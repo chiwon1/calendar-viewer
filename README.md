@@ -1,70 +1,118 @@
-# Getting Started with Create React App
+# Calendar
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Calendar](/readme-assets/weekly_view.png)
 
-## Available Scripts
+**React + React Router + Redux**를 복합적으로 이용해 Single Page Application 스타일의 Google Calendar를 만들어 보는 과제입니다.
 
-In the project directory, you can run:
+## Installation
 
-### `yarn start`
+```sh
+npm install
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Development
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```sh
+npm start
+// localhost:3000
+```
 
-### `yarn test`
+## Keep in mind
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. [Hooks의 동기](https://ko.reactjs.org/docs/hooks-intro.html#motivation) 및 장단점에 대해 깊이 고민하며 작업하기
+2. Redux State 구조에 대해 신중히 설계하고 시작하기
 
-### `yarn build`
+- [Normalizing State Shape](https://redux.js.org/recipes/structuring-reducers/normalizing-state-shape)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Reducer의 순수성에 대해 염두하고 작업하기
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+\*\* [Redux-logger](https://github.com/LogRocket/redux-logger) 외의 Redux Middleware 사용은 아직 권장하지 않습니다. 기본적인 흐름을 먼저 익히는데 집중하세요.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### References
 
-### `yarn eject`
+- [Redux Style Guide](https://redux.js.org/style-guide/style-guide)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## TODO
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- [ ] 우선 다음과 같이 페이지를 구성하세요.
+  - `/calendar`: 메인 달력 페이지
+  - `/events/new`: 이벤트 생성 페이지
+  - `/events/:eventId`: 이벤트 상세 페이지
+  - `/`: `/calendar`로 이동
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### `/calendar` 메인 달력 페이지
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- [ ] 선택된 날짜에 해당하는 달력이 보여져야 합니다. 선택된 날짜가 없을 경우, 오늘 날짜에 해당하는 달력이 보여져야 합니다.
+- [ ] 사용자는 일간 스케줄 보기, 주간 스케줄 보기 중 하나를 선택할 수 있어야 합니다. 기본 값은 일간 스케줄 보기 입니다. (일간 스케줄 보기와 주간 스케줄 보기는 아래 이미지를 참고하세요.)
+- [ ] 사용자가 일간 스케줄 보기를 선택했을 경우, 현재 선택된 날짜에 해당하는 이벤트 정보가 달력에 함께 보여져야 합니다.
+- [ ] 사용자가 주간 스케줄 보기를 선택했을 경우, 현재 날짜가 속한 주에 해당하는 이벤트 정보가 달력에 함께 보여져야 합니다.
+- [ ] 구글 캘린더와 유사하게 Y축 방향으로는 1시간 단위의 시간대 정보가 보여져야 합니다.
+- [ ] 일간 스케줄 보기의 경우, X축 방향으로는 현재 날짜가 보여져야 합니다.
+- [ ] 주간 스케줄 보기의 경우, X축 방향으로는 현재 주에 해당하는 요일과 날짜가 나열되어 보여져야 합니다.
+- [ ] 이전 날짜/주 혹은 다음 날짜/주로 이동할 수 있는 버튼이 있어야 합니다.
+- [ ] 달력에서 이벤트를 클릭했을 경우, 해당 이벤트 상세 페이지(`/events/<EVENT_ID>`)로 이동해야 합니다.
+- [ ] 이벤트를 생성할 수 있는 버튼이 보여져야 합니다. 이벤트 생성 버튼을 클릭할 경우, 이벤트 생성 페이지(`/events/new`)로 이동해야 합니다.
 
-## Learn More
+#### 일간 스케줄 보기의 예시 UI
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![Calendar](/readme-assets/daily_view.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### 주간 스케줄 보기의 예시 UI
 
-### Code Splitting
+![Calendar](/readme-assets/weekly_view.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### `/events/new` 이벤트 생성 페이지
 
-### Analyzing the Bundle Size
+- [ ] 이벤트를 생성할 수 있는 Form이 보여져야 하고 사용자는 아래 정보를 입력할 수 있어야 합니다.
+  - 이벤트 제목
+  - 이벤트 설명
+  - 이벤트 시작 날짜 및 시간
+  - 이벤트 종료 날짜 및 시간
+- [ ] 위 정보는 모두 필수 정보입니다. 최대한 상식 선에서 스스로 유효성 검사를 실행해 주시기 바랍니다.
+- [ ] 이벤트가 성공적으로 생성되었을 경우, 메인 달력 페이지로 이동해야 합니다.
+- [ ] 모든 이벤트는 시작 날짜와 종료 날짜가 같아야 합니다.
+- [ ] 모든 이벤트는 1시간 단위로만 길이를 조정할 수 있습니다.
+- [ ] 이벤트는 1시 00분, 2시 00분 등 정시에만 시작하거나 끝날 수 있습니다.
+- [ ] 같은 시간에 중복된 이벤트는 있을 수 없습니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### `/events/<EVENT_ID>` 이벤트 상세 페이지
 
-### Making a Progressive Web App
+- [ ] `<EVENT_ID>`에 해당하는 이벤트의 상세 정보를 보여주어야 합니다.
+  - 이벤트 제목
+  - 이벤트 설명
+  - 이벤트 시작 날짜 및 시간
+  - 이벤트 종료 날짜 및 시간
+- [ ] 사용자는 모든 입력 사항에 대해 수정할 수 있습니다.
+- [ ] 삭제 버튼을 이용하여 사용자는 이벤트를 삭제할 수 있어야 합니다.
+- [ ] 만약 유효하지 않은 `<EVENT_ID>`로 접근한다면 유효하지 않은 이벤트라는 정보를 표시해주어야 합니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Advanced
 
-### Advanced Configuration
+### Component Unit Test
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+가장 간단한 컴포넌트부터 시작하여 최소 1-2개 이상의 컴포넌트에 대한 단위 테스트를 작성해보세요. 현재 과제에는 `@testing-library/react`가 설치되어 있습니다. [문서](https://testing-library.com/docs/react-testing-library/example-intro)를 읽고 작성해보시기 바랍니다.
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `yarn build` fails to minify
+### Firebase Authentication
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Firebase를 이용하여 로그인 기능을 쉽게 구현할 수 있습니다. [Firebase Authentication 문서](https://firebase.google.com/docs/auth/web/start)를 읽고 소셜 로그인 기능을 추가해보세요. _단, 로그인 기능을 추가한다면 이벤트 정보 또한 사용자 별로 관리가 되어야 합니다._
+
+## Prerequisites
+
+이번 과제에서는 Firebase를 사용하셔야 합니다. 아래 단계를 순차적으로 따라하시거나, [Firebase Database 공식 가이드](https://firebase.google.com/docs/database/web/start)를 참고하여 `/src/api/firebase` 파일을 적절히 수정한 후 시작하세요.
+
+- [ ] 우선 [Firebase 웹사이트](https://firebase.google.com/)를 방문하여 로그인 및 회원가입을 완료하세요.
+- [ ] [Firebase Console](https://console.firebase.google.com)로 이동하세요.
+- [ ] 새 프로젝트를 생성하세요.
+- [ ] Database 서비스 중, **Realtime Database**를 생성하세요. 주의) 🚨 Cloud Firestore가 아닙니다.
+- [ ] **프로젝트 설정에서 본인의 config 정보를 이용하여 `/src/api/firebase`를 수정하세요.**
+
+작업을 진행하시면서 Firebase 관련 정보는 아래 링크에서 찾아보세요.
+
+- [Firebase Database 가이드](https://firebase.google.com/docs/database/web/start)
+- [Firebase Database API Doc](https://firebase.google.com/docs/reference/js/firebase.database)
+- **Firebase Database에 저장하는 데이터의 구조에 대해 신중하게 결정하고 시작하시기 바랍니다. 참고: [Firebase Database 구조 설계 가이드](https://firebase.google.com/docs/database/web/structure-data)**
+- **Firebase Database에 저장하는 날짜 및 시간 정보는 ISO 형식으로 저장하시기 바랍니다.**
