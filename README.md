@@ -1,6 +1,6 @@
 # Calendar
 
-![Calendar](/readme-assets/weekly_view.png)
+![Calendar](/readme-assets/main.jpeg)
 
 **React + React Router + Redux**를 복합적으로 이용해 Single Page Application 스타일의 Google Calendar를 만들어 보는 과제입니다.
 
