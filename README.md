@@ -28,10 +28,6 @@ npm start
 
 \*\* [Redux-logger](https://github.com/LogRocket/redux-logger) 외의 Redux Middleware 사용은 아직 권장하지 않습니다. 기본적인 흐름을 먼저 익히는데 집중하세요.
 
-### References
-
-- [Redux Style Guide](https://redux.js.org/style-guide/style-guide)
-
 ## TODO
 
 - [ ] 우선 다음과 같이 페이지를 구성하세요.
@@ -88,31 +84,8 @@ npm start
 
 ## Advanced
 
+### Deploy with Netlify
+
 ### Component Unit Test
 
 가장 간단한 컴포넌트부터 시작하여 최소 1-2개 이상의 컴포넌트에 대한 단위 테스트를 작성해보세요. 현재 과제에는 `@testing-library/react`가 설치되어 있습니다. [문서](https://testing-library.com/docs/react-testing-library/example-intro)를 읽고 작성해보시기 바랍니다.
-
----
-
----
-
-### Firebase Authentication
-
-Firebase를 이용하여 로그인 기능을 쉽게 구현할 수 있습니다. [Firebase Authentication 문서](https://firebase.google.com/docs/auth/web/start)를 읽고 소셜 로그인 기능을 추가해보세요. _단, 로그인 기능을 추가한다면 이벤트 정보 또한 사용자 별로 관리가 되어야 합니다._
-
-## Prerequisites
-
-이번 과제에서는 Firebase를 사용하셔야 합니다. 아래 단계를 순차적으로 따라하시거나, [Firebase Database 공식 가이드](https://firebase.google.com/docs/database/web/start)를 참고하여 `/src/api/firebase` 파일을 적절히 수정한 후 시작하세요.
-
-- [ ] 우선 [Firebase 웹사이트](https://firebase.google.com/)를 방문하여 로그인 및 회원가입을 완료하세요.
-- [ ] [Firebase Console](https://console.firebase.google.com)로 이동하세요.
-- [ ] 새 프로젝트를 생성하세요.
-- [ ] Database 서비스 중, **Realtime Database**를 생성하세요. 주의) 🚨 Cloud Firestore가 아닙니다.
-- [ ] **프로젝트 설정에서 본인의 config 정보를 이용하여 `/src/api/firebase`를 수정하세요.**
-
-작업을 진행하시면서 Firebase 관련 정보는 아래 링크에서 찾아보세요.
-
-- [Firebase Database 가이드](https://firebase.google.com/docs/database/web/start)
-- [Firebase Database API Doc](https://firebase.google.com/docs/reference/js/firebase.database)
-- **Firebase Database에 저장하는 데이터의 구조에 대해 신중하게 결정하고 시작하시기 바랍니다. 참고: [Firebase Database 구조 설계 가이드](https://firebase.google.com/docs/database/web/structure-data)**
-- **Firebase Database에 저장하는 날짜 및 시간 정보는 ISO 형식으로 저장하시기 바랍니다.**
