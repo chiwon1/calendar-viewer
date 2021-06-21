@@ -86,6 +86,8 @@ npm start
 
 ### Deploy with Netlify
 
+- [30초 안에 Netlify를 이용해 리액트 배포하는 방법](https://www.netlify.com/blog/2016/07/22/deploy-react-apps-in-less-than-30-seconds/)
+
 ### Component Unit Test
 
 가장 간단한 컴포넌트부터 시작하여 최소 1-2개 이상의 컴포넌트에 대한 단위 테스트를 작성해보세요. 현재 과제에는 `@testing-library/react`가 설치되어 있습니다. [문서](https://testing-library.com/docs/react-testing-library/example-intro)를 읽고 작성해보시기 바랍니다.
