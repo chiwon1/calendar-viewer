@@ -20,11 +20,9 @@ npm start
 ## Keep in mind
 
 1. [Hooks의 동기](https://ko.reactjs.org/docs/hooks-intro.html#motivation) 및 장단점에 대해 깊이 고민하며 작업하기
-2. Redux State 구조에 대해 신중히 설계하고 시작하기
-
-- [Normalizing State Shape](https://redux.js.org/recipes/structuring-reducers/normalizing-state-shape)
-
-3. Reducer의 순수성에 대해 염두하고 작업하기
+2. [Redux Style Guide](https://redux.js.org/style-guide/style-guide##structure-files-as-feature-folders-with-single-file-logic)의 내용을 항상 염두하고 작업하기
+3. Redux State 구조에 대해 신중히 설계하고 시작하기 -> [Normalizing State Shape](https://redux.js.org/recipes/structuring-reducers/normalizing-state-shape)
+4. Reducer의 순수성에 대해 염두하고 작업하기
 
 \*\* [Redux-logger](https://github.com/LogRocket/redux-logger) 외의 Redux Middleware 사용은 아직 권장하지 않습니다. 기본적인 흐름을 먼저 익히는데 집중하세요.
 
