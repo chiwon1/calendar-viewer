@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import styled from "styled-components";
 import events from '../../../../mockData';
 import EventBox from "../EventBox/EventBox";
+import changeDateFormat from '../../../utils/date';
 
 const Wrapper = styled.div`
   .calendar-container {
@@ -46,16 +47,25 @@ const showEventSetting = (timeIndex) => {
 };
 
 function Daily() {
-  const [data, setData] = useState(events);
+  const [dataList, setDataList] = useState(events);
 
   const { currentDate } = useSelector((state) => state.calendar);
+
+  const checkEventToShow = (date, currentDate) => {
+    const isCurrentDay = date.getDate() === currentDate.getDate();
+    const isCurrentMonth = currentDate.getMonth() === date.getMonth();
+
+    return isCurrentDay && isCurrentMonth;
+  };
 
   const date = currentDate.getDate();
 
   const dayList = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const day =  dayList[currentDate.getDay()];
 
-  console.log('day', day);
+  const filteredData = dataList.filter(data => checkEventToShow(data.date, currentDate));
+  console.log('dataList', dataList);
+  console.log('filteredData', filteredData);
 
   return (
     <Wrapper>
@@ -75,7 +85,7 @@ function Daily() {
               </div>
             </div>
           ))}
-          {data.map(({ id,startTime, endTime, title, description }) => {
+          {filteredData.map(({ id,startTime, endTime, title, description }) => {
             return (
               <div
                 key={id}

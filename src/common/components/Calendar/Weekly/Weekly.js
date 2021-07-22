@@ -76,7 +76,7 @@ function Weekly() {
     return isCurrentWeek && isCurrentMonth;
   };
 
-  const sortedData = dataList.filter(data => checkEventToShow(data.date, weekDateList));
+  const filteredData = dataList.filter(data => checkEventToShow(data.date, weekDateList));
 
   return (
     <Wrapper>
@@ -115,7 +115,7 @@ function Weekly() {
                 </Day>
               ))}
             </div>
-            {sortedData.map(({ id, day, startTime, endTime, title, description }) => {
+            {filteredData.map(({ id, day, startTime, endTime, title, description }) => {
               return (
                 <div
                   key={id}

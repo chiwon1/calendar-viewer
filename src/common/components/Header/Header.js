@@ -38,7 +38,6 @@ const Wrapper = styled.div`
 
 function Header () {
   const { currentDate, currentSunday, calendarType } = useSelector((state) => state.calendar);
-  console.log('calendarType', calendarType);
 
   const currentMonth = calendarType === WEEKLY ? currentSunday.getMonth() + 1 : currentDate.getMonth() + 1;
   const dispatch = useDispatch();
