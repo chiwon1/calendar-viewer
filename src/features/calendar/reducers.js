@@ -1,5 +1,6 @@
-import { SHOW_LAST_WEEK, SHOW_NEXT_WEEK } from "./types";
+import { SHOW_LAST_WEEK, SHOW_NEXT_WEEK, SHOW_DAILY_CALENDAR, SHOW_WEEKLY_CALENDAR } from "./types";
 import { cloneDeep } from "lodash";
+import { DAILY, WEEKLY } from '../constant';
 
 const today = new Date();
 
@@ -10,6 +11,7 @@ const initialState = {
   today: today,
   currentDate: today,
   currentSunday: thisSunday,
+  calendarType: WEEKLY,
   // displayedMonth: today.getMonth(),
 };
 
@@ -19,7 +21,6 @@ export default function calendarReducer(state = initialState, action) {
       const newState = cloneDeep(state);
 
       const nextSunday = new Date(newState.currentSunday);
-
       nextSunday.setDate(nextSunday.getDate() - 7);
       newState.currentSunday = nextSunday;
 
@@ -32,6 +33,20 @@ export default function calendarReducer(state = initialState, action) {
 
       nextSunday.setDate(nextSunday.getDate() + 7);
       newState.currentSunday = nextSunday;
+
+      return newState;
+    }
+    case SHOW_DAILY_CALENDAR: {
+      const newState = cloneDeep(state);
+
+      newState.calendarType = DAILY;
+
+      return newState;
+    }
+    case SHOW_WEEKLY_CALENDAR: {
+      const newState = cloneDeep(state);
+
+      newState.calendarType = WEEKLY;
 
       return newState;
     }

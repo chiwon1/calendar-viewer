@@ -56,7 +56,6 @@ function Weekly() {
 
   const { currentSunday } = useSelector((state) => state.calendar);
 
-
   const weekDateList = ["Time"];
 
   for (let i = 0; i < 7; i++) {

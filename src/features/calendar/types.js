@@ -2,14 +2,18 @@ export const SHOW_NEXT_WEEK = "app/calendar/SHOW_NEXT_WEEK";
 
 export const SHOW_LAST_WEEK = "app/calendar/SHOW_LAST_WEEK";
 
-export const GET_EVENT_BY_ID = "GET_EVENT_BY_ID";
+export const SHOW_DAILY_CALENDAR = "SHOW_DAILY_CALENDAR";
 
-export const DELETE_EVENT = "DELETE_EVENT";
+export const SHOW_WEEKLY_CALENDAR = "SHOW_WEEKLY_CALENDAR";
 
-export const UPDATE_EVENT = "UPDATE_EVENT";
+// export const GET_EVENT_BY_ID = "GET_EVENT_BY_ID";
 
-export const CREATE_EVENT = "CREATE_EVENT";
+// export const DELETE_EVENT = "DELETE_EVENT";
 
-export const GET_EVENTS_BY_DATE = "GET_EVENTS_BY_DATE";
+// export const UPDATE_EVENT = "UPDATE_EVENT";
 
-export const GET_EVENTS_BY_WEEK = "GET_EVENTS_BY_WEEK";
+// export const CREATE_EVENT = "CREATE_EVENT";
+
+// export const GET_EVENTS_BY_DATE = "GET_EVENTS_BY_DATE";
+
+// export const GET_EVENTS_BY_WEEK = "GET_EVENTS_BY_WEEK";

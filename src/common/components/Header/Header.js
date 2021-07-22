@@ -2,7 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
-import { showLastWeek, showNextWeek } from '../../../features/calendar/actions';
+import { showLastWeek, showNextWeek, showDailyCalendar, showWeeklyCalendar } from '../../../features/calendar/actions';
+import { DAILY, WEEKLY } from '../../../features/constant';
 
 const Wrapper = styled.div`
   header {
@@ -31,14 +32,18 @@ const Wrapper = styled.div`
     color: black;
     border: 2px solid #555555;
   }
-
-  .selector {
-  }
 `;
 
-// TODO: Create your own header.
 function Header () {
   const dispatch = useDispatch();
+
+  const onChangeCalendarTypeSelector = (event) => {
+    if (event.target.value === DAILY) {
+      dispatch(showDailyCalendar());
+    } else {
+      dispatch(showWeeklyCalendar());
+    }
+  };
 
   return (
     <Wrapper>
@@ -46,14 +51,12 @@ function Header () {
         <div className="menu-selector">
           <nav>
             <ul>
-              <li><Link to='/'>Menu 1</Link></li>
-              <li><Link to='/event'>Menu 2</Link></li>
+              <li><Link to='/'>Calendar</Link></li>
+              <li><Link to='/event'>Create event</Link></li>
             </ul>
           </nav>
         </div>
-
         <button className="today-button">Today</button>
-
         <div className="back-forward">
           <button
             className="back-forward-button"
@@ -69,15 +72,12 @@ function Header () {
           </button>
             <button value="날짜">날짜선택</button>
         </div>
-
         <div className="selector">
-          <select>
-            <option value="day">Day</option>
-            <option value="week">Week</option>
-            <option value="month">Month</option>
+          <select onChange={onChangeCalendarTypeSelector}>
+            <option value={WEEKLY}>{WEEKLY}</option>
+            <option value={DAILY}>{DAILY}</option>
           </select>
         </div>
-
       </header>
     </Wrapper>
   );
