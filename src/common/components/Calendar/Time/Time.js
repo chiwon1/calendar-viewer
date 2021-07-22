@@ -5,7 +5,6 @@ const Wrapper = styled.div`
   .time {
     width: 150px;
     height: 50px;
-    border: 1px solid pink;
   }
 `;
 
@@ -16,7 +15,6 @@ function Time({ onClick }) {
         className="time"
         onClick={onClick}
       >
-        Time
       </div>
     </Wrapper>
   );

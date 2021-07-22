@@ -6,7 +6,6 @@ const Wrapper = styled.div`
   .day {
     width: 150px;
     height: 1248px;
-    border: 1px solid black;
   }
 `;
 
