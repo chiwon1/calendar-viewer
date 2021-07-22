@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from 'react-redux';
 import styled from "styled-components";
 import events from '../../../../mockData';
 import EventBox from "../EventBox/EventBox";
@@ -28,6 +29,7 @@ const Wrapper = styled.div`
   }
 
   .second-column {
+    font-size: 25px;
     width: 900px;
     height: 60px;
     border: 1px solid black;
@@ -46,12 +48,21 @@ const showEventSetting = (timeIndex) => {
 function Daily() {
   const [data, setData] = useState(events);
 
+  const { currentDate } = useSelector((state) => state.calendar);
+
+  const date = currentDate.getDate();
+
+  const dayList = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const day =  dayList[currentDate.getDay()];
+
+  console.log('day', day);
+
   return (
     <Wrapper>
       <div className="calendar-container">
         <div className="top-row-container">
           <div className="first-column">Time</div>
-          <div className="second-column">Event name</div>
+          <div className="second-column">{day} {date}</div>
         </div>
         <div className="day">
           {Array.from(Array(24).keys()).map((hour, index) => (
@@ -64,7 +75,6 @@ function Daily() {
               </div>
             </div>
           ))}
-
           {data.map(({ id,startTime, endTime, title, description }) => {
             return (
               <div

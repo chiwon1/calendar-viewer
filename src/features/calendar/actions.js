@@ -1,4 +1,4 @@
-import { SHOW_LAST_WEEK, SHOW_NEXT_WEEK, SHOW_DAILY_CALENDAR, SHOW_WEEKLY_CALENDAR } from "./types";
+import { SHOW_LAST_WEEK, SHOW_NEXT_WEEK, SHOW_DAILY_CALENDAR, SHOW_WEEKLY_CALENDAR, SHOW_NEXT_DAY, SHOW_LAST_DAY } from "./types";
 
 export function showLastWeek() {
   return { type: SHOW_LAST_WEEK };
@@ -14,4 +14,12 @@ export function showDailyCalendar() {
 
 export function showWeeklyCalendar() {
   return { type: SHOW_WEEKLY_CALENDAR };
+}
+
+export function showLastDay() {
+  return { type : SHOW_LAST_DAY };
+}
+
+export function showNextDay() {
+  return { type: SHOW_NEXT_DAY };
 }

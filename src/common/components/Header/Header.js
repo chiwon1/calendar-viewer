@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
-import { showLastWeek, showNextWeek, showDailyCalendar, showWeeklyCalendar } from '../../../features/calendar/actions';
+import { showLastWeek, showNextWeek, showDailyCalendar, showWeeklyCalendar, showLastDay, showNextDay } from '../../../features/calendar/actions';
 import { DAILY, WEEKLY } from '../../../features/constant';
 
 const Wrapper = styled.div`
@@ -37,9 +37,10 @@ const Wrapper = styled.div`
 `;
 
 function Header () {
-  const { currentSunday } = useSelector((state) => state.calendar);
-  const currentMonth = currentSunday.getMonth() + 1;
-  console.log('currentMonth', currentMonth);
+  const { currentDate, currentSunday, calendarType } = useSelector((state) => state.calendar);
+  console.log('calendarType', calendarType);
+
+  const currentMonth = calendarType === WEEKLY ? currentSunday.getMonth() + 1 : currentDate.getMonth() + 1;
   const dispatch = useDispatch();
 
   const onChangeCalendarTypeSelector = (event) => {
@@ -64,18 +65,28 @@ function Header () {
         <button className="today-button">Today</button>
         <div className="month">{currentMonth}</div>
         <div className="back-forward">
-          <button
+          {calendarType === WEEKLY ? <button
             className="back-forward-button"
             onClick={() => dispatch(showLastWeek())}
           >
           {"<"}
-          </button>
-          <button
+          </button> : <button
+            className="back-forward-button"
+            onClick={() => dispatch(showLastDay())}
+          >
+          {"<"}
+          </button>}
+          {calendarType === WEEKLY ? <button
             className="back-forward-button"
             onClick={() => dispatch(showNextWeek())}
           >
           {">"}
-          </button>
+          </button> : <button
+            className="back-forward-button"
+            onClick={() => dispatch(showNextDay())}
+          >
+          {">"}
+          </button>}
             <button value="날짜">날짜선택</button>
         </div>
         <div className="selector">

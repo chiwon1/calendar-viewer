@@ -4,6 +4,7 @@ import Day from "../Day/Day";
 import events from "../../../../mockData";
 import EventBox from "../EventBox/EventBox";
 import { useSelector } from 'react-redux';
+import changeDateFormat from '../../../utils/date';
 
 const Wrapper = styled.div`
   .calendar-container {
@@ -61,21 +62,21 @@ function Weekly() {
   const weekDateList = [];
 
   for (let i = 0; i < 7; i++) {
-    const date = currentSunday.getDate() + i;
+    const date = new Date(currentSunday);
+
+    date.setDate(date.getDate() + i);
 
     weekDateList.push(date);
   }
 
   const checkEventToShow = (date, currentWeekDateList) => {
-    const isCurrentWeek = currentWeekDateList.includes(date.getDate());
+    const isCurrentWeek = currentWeekDateList.map(baseDate => changeDateFormat(baseDate).date).includes(date.getDate());
     const isCurrentMonth = currentSunday.getMonth() === date.getMonth();
 
     return isCurrentWeek && isCurrentMonth;
   };
 
-  console.log('dataList', dataList);
   const sortedData = dataList.filter(data => checkEventToShow(data.date, weekDateList));
-  console.log('sortedData', sortedData);
 
   return (
     <Wrapper>
@@ -96,9 +97,12 @@ function Weekly() {
                 )}
               </div>
               <div>
-                {weekDateList.map((date, index) => (
-                  <div key={index} className="dayName">{date}</div>
-                ))}
+                {weekDateList.map((baseDate, index) => {
+                  const { date } = changeDateFormat(baseDate);
+
+                  return (
+                    <div key={index} className="dayName">{date}</div>
+                )})}
               </div>
             </div>
             <div style={{ display: 'flex' }}>
