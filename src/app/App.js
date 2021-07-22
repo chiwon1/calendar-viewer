@@ -2,7 +2,8 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 import Header from "../common/components/Header/Header";
-import Daily from "../common/components/Calendar/Daily/Daily";
+// import Daily from "../common/components/Calendar/Daily/Daily";
+import Weekly from "../common/components/Calendar/Weekly/Weekly";
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
       <Header />
       <Switch>
         <Route path="/" exact>
-          <Daily />
+          {/* <Daily /> */}
+          <Weekly />
         </Route>
         <Route path="/event">
           <div>Event</div>
