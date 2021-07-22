@@ -16,7 +16,6 @@ const showEventSetting = (i, j) => {
 };
 
 function Day({ day, dayIndex }) {
-  console.log('day', day);
   return (
     <Wrapper>
       <div className="day">
