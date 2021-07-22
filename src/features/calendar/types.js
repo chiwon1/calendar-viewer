@@ -1,6 +1,6 @@
-export const SHOW_NEXT_MONTH = "app/calendar/SHOW_NEXT_MONTH";
+export const SHOW_NEXT_WEEK = "app/calendar/SHOW_NEXT_WEEK";
 
-export const SHOW_LAST_MONTH = "app/calendar/SHOW_LAST_MONTH";
+export const SHOW_LAST_WEEK = "app/calendar/SHOW_LAST_WEEK";
 
 export const GET_EVENT_BY_ID = "GET_EVENT_BY_ID";
 

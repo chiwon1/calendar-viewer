@@ -1,6 +1,8 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
+import { showLastWeek, showNextWeek } from '../../../features/calendar/actions';
 
 const Wrapper = styled.div`
   header {
@@ -36,6 +38,8 @@ const Wrapper = styled.div`
 
 // TODO: Create your own header.
 function Header () {
+  const dispatch = useDispatch();
+
   return (
     <Wrapper>
       <header>
@@ -51,8 +55,18 @@ function Header () {
         <button className="today-button">Today</button>
 
         <div className="back-forward">
-          <button className="back-forward-button">{"<"}</button>
-          <button className="back-forward-button">{">"}</button>
+          <button
+            className="back-forward-button"
+            onClick={() => dispatch(showLastWeek())}
+          >
+          {"<"}
+          </button>
+          <button
+            className="back-forward-button"
+            onClick={() => dispatch(showNextWeek())}
+          >
+          {">"}
+          </button>
             <button value="날짜">날짜선택</button>
         </div>
 

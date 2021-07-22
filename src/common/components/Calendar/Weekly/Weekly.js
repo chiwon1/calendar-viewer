@@ -56,6 +56,7 @@ function Weekly() {
 
   const { currentSunday } = useSelector((state) => state.calendar);
 
+
   const weekDateList = ["Time"];
 
   for (let i = 0; i < 7; i++) {
@@ -85,7 +86,8 @@ function Weekly() {
               key={dayIndex}
               day={day}
               dayIndex={dayIndex}
-            ></Day>
+            >
+            </Day>
           ))}
           {data.map(({ id, day, startTime, endTime, title, description }) => {
             return (
