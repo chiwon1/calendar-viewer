@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import { showLastWeek, showNextWeek, showDailyCalendar, showWeeklyCalendar } from '../../../features/calendar/actions';
@@ -8,6 +8,7 @@ import { DAILY, WEEKLY } from '../../../features/constant';
 const Wrapper = styled.div`
   header {
     display: flex;
+    width: 1200px;
     text-align: center;
     justify-content: space-between;
     align-items: center;
@@ -24,7 +25,8 @@ const Wrapper = styled.div`
     border: 2px solid #555555;
   }
 
-  .back-forward {
+  .month {
+    font-size: 40px;
   }
 
   .back-forward-button {
@@ -35,6 +37,9 @@ const Wrapper = styled.div`
 `;
 
 function Header () {
+  const { currentSunday } = useSelector((state) => state.calendar);
+  const currentMonth = currentSunday.getMonth() + 1;
+  console.log('currentMonth', currentMonth);
   const dispatch = useDispatch();
 
   const onChangeCalendarTypeSelector = (event) => {
@@ -57,6 +62,7 @@ function Header () {
           </nav>
         </div>
         <button className="today-button">Today</button>
+        <div className="month">{currentMonth}</div>
         <div className="back-forward">
           <button
             className="back-forward-button"

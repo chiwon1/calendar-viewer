@@ -9,7 +9,6 @@ import { WEEKLY } from '../features/constant';
 
 function App() {
   const { calendarType } = useSelector((state) => state.calendar);
-  console.log('calendarType', calendarType);
 
   return (
     <div>

@@ -6,7 +6,7 @@ import EventBox from "../EventBox/EventBox";
 const Wrapper = styled.div`
   .calendar-container {
     text-align: center;
-    width: 1200px;
+    width: 1202px;
   }
 
   .top-row-container {
@@ -28,7 +28,7 @@ const Wrapper = styled.div`
   }
 
   .second-column {
-    width: 700px;
+    width: 900px;
     height: 60px;
     border: 1px solid black;
   }
@@ -54,8 +54,8 @@ function Daily() {
           <div className="second-column">Event name</div>
         </div>
         <div className="day">
-          {Array.from(Array(24).keys()).map((hour) => (
-            <div className="row-container">
+          {Array.from(Array(24).keys()).map((hour, index) => (
+            <div className="row-container" key={index}>
               <div className="first-column">{`${hour}:00 - ${hour + 1}:00`}</div>
               <div
                 className="second-column"
@@ -72,10 +72,10 @@ function Daily() {
                 style={{
                   backgroundColor: "pink",
                   left: 302,
-                  top: 62 * startTime,
+                  top: 62 * startTime ,
                   border: "1px solid black",
-                  width: 702,
-                  height: (endTime - startTime) * 62,
+                  width: 898,
+                  height: (endTime - startTime) * 61 + 1,
                   zIndex: 3,
                   position: "absolute",
                 }}
