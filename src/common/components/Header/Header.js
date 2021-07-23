@@ -5,38 +5,6 @@ import styled from "styled-components";
 import { showLastWeek, showNextWeek, showDailyCalendar, showWeeklyCalendar, showLastDay, showNextDay } from "../../../features/calendar/actions";
 import { CALENDAR, DAILY, EVENT_CREATE, TODAY, WEEKLY } from "../../../features/constant";
 
-const Wrapper = styled.header`
-  display: flex;
-  width: 1200px;
-  text-align: center;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const MenuSelector = styled.div`
-  vertical-align: middle;
-`;
-
-const ListWrapper = styled.li`
-  list-style: none;
-`;
-const TodayButton = styled.button`
-  padding: 5px 10px;
-  background-color: white;
-  color: black;
-`;
-
-const BackForwardButton = styled.button`
-  padding: 5px 10px;
-  background-color: white;
-  color: black;
-  margin: 5px;
-`;
-
-const MonthWrapper = styled.div`
-  font-size: 80px;
-`;
-
 function Header () {
   const { currentDate, currentSunday, calendarType } = useSelector((state) => state.calendar);
 
@@ -54,14 +22,14 @@ function Header () {
 
   return (
     <Wrapper>
-      <MenuSelector>
+      <MenuSelectorWrapper>
         <nav>
           <ul>
             <ListWrapper><Link to="/">{CALENDAR}</Link></ListWrapper>
             <ListWrapper><Link to="/event">{EVENT_CREATE}</Link></ListWrapper>
           </ul>
         </nav>
-      </MenuSelector>
+      </MenuSelectorWrapper>
       <TodayButton>{TODAY}</TodayButton>
       <MonthWrapper>{currentMonth}</MonthWrapper>
       <div>
@@ -69,13 +37,13 @@ function Header () {
           <BackForwardButton
             onClick={() => dispatch(showLastWeek())}
           >
-          {"<"}
+          &lt;
           </BackForwardButton>
         ) : (
           <BackForwardButton
             onClick={() => dispatch(showLastDay())}
           >
-          {"<"}
+          &gt;
           </BackForwardButton>
         )}
         {calendarType === WEEKLY ? (
@@ -101,5 +69,37 @@ function Header () {
     </Wrapper>
   );
 }
+
+const Wrapper = styled.header`
+  display: flex;
+  width: 1200px;
+  text-align: center;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const MenuSelectorWrapper = styled.div`
+  vertical-align: middle;
+`;
+
+const ListWrapper = styled.li`
+  list-style: none;
+`;
+const TodayButton = styled.button`
+  padding: 5px 10px;
+  background-color: white;
+  color: black;
+`;
+
+const BackForwardButton = styled.button`
+  padding: 5px 10px;
+  background-color: white;
+  color: black;
+  margin: 5px;
+`;
+
+const MonthWrapper = styled.div`
+  font-size: 80px;
+`;
 
 export default Header;
