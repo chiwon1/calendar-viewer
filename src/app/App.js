@@ -6,6 +6,7 @@ import Daily from "../common/components/Calendar/Daily/Daily";
 import Weekly from "../common/components/Calendar/Weekly/Weekly";
 import { useSelector } from 'react-redux';
 import { WEEKLY } from '../features/constant';
+import EventCreate from '../common/components/Event/EventCreate/EventCreate';
 
 function App() {
   const { calendarType } = useSelector((state) => state.calendar);
@@ -23,7 +24,7 @@ function App() {
           }
         </Route>
         <Route path="/event">
-          <div>Event</div>
+          <EventCreate/>
         </Route>
       </Switch>
     </div>

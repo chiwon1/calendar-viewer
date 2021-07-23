@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Day from "../Day/Day";
-import events from "../../../../mockData";
 import EventBox from "../EventBox/EventBox";
 import { useSelector } from 'react-redux';
 import changeDateFormat from '../../../utils/date';
@@ -55,9 +54,8 @@ for (let i = 0; i < 7; i++) {
 const dayList = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 function Weekly() {
-  const [dataList, setDataList] = useState(events);
-
-  const { currentSunday } = useSelector((state) => state.calendar);
+  const { currentSunday, events } = useSelector((state) => state.calendar);
+  console.log('events', events);
 
   const weekDateList = [];
 
@@ -76,7 +74,8 @@ function Weekly() {
     return isCurrentWeek && isCurrentMonth;
   };
 
-  const filteredData = dataList.filter(data => checkEventToShow(data.date, weekDateList));
+  const filteredData = events.filter(event => checkEventToShow(event.date, weekDateList));
+  console.log('filteredData', filteredData);
 
   return (
     <Wrapper>
@@ -115,13 +114,13 @@ function Weekly() {
                 </Day>
               ))}
             </div>
-            {filteredData.map(({ id, day, startTime, endTime, title, description }) => {
+            {filteredData.map(({ id, date, day, startTime, endTime, title, description }) => {
               return (
                 <div
                   key={id}
                   style={{
                     backgroundColor: "pink",
-                    left: (150 * (day + 1)),
+                    left: (150 * (date.getDay() + 1)),
                     top: 82 * (startTime + 1),
                     border: "1px solid black",
                     width: 150,

@@ -1,7 +1,8 @@
-import { SHOW_LAST_WEEK, SHOW_NEXT_WEEK, SHOW_DAILY_CALENDAR, SHOW_WEEKLY_CALENDAR, SHOW_LAST_DAY, SHOW_NEXT_DAY } from "./types";
+import { SHOW_LAST_WEEK, SHOW_NEXT_WEEK, SHOW_DAILY_CALENDAR, SHOW_WEEKLY_CALENDAR, SHOW_LAST_DAY, SHOW_NEXT_DAY, CREATE_EVENT, UPDATE_EVENT, DELETE_EVENT } from "./types";
 import { cloneDeep } from "lodash";
 import { DAILY, WEEKLY } from '../constant';
 
+//toISOString()으로 바꾸기
 const today = new Date();
 
 const thisSunday = new Date();
@@ -12,6 +13,7 @@ const initialState = {
   currentDate: today,
   currentSunday: thisSunday,
   calendarType: WEEKLY,
+  events: [],
   // displayedMonth: today.getMonth(),
 };
 
@@ -65,6 +67,31 @@ export default function calendarReducer(state = initialState, action) {
       const newState = cloneDeep(state);
 
       newState.calendarType = WEEKLY;
+
+      return newState;
+    }
+    case CREATE_EVENT: {
+      const newState = cloneDeep(state);
+
+      newState.events = [...newState.events, { ... action.payload, id: newState.events.length + 1 }];
+
+      return newState;
+    }
+    case UPDATE_EVENT: {
+      const newState = cloneDeep(state);
+
+      const newEvent = { id: action.id, ...action.payload };
+
+      newState[action.id] = newEvent;
+
+      return newState;
+    }
+    case DELETE_EVENT: {
+      const newState = cloneDeep(state);
+
+      const newEvents = [...newState.events.slice(0, action.id), ...newState.events.slice(action.id + 1)];
+
+      newState.events = newEvents;
 
       return newState;
     }

@@ -64,29 +64,36 @@ function Header () {
         <button className="today-button">Today</button>
         <div className="month">{currentMonth}</div>
         <div className="back-forward">
-          {calendarType === WEEKLY ? <button
-            className="back-forward-button"
-            onClick={() => dispatch(showLastWeek())}
-          >
-          {"<"}
-          </button> : <button
-            className="back-forward-button"
-            onClick={() => dispatch(showLastDay())}
-          >
-          {"<"}
-          </button>}
-          {calendarType === WEEKLY ? <button
-            className="back-forward-button"
-            onClick={() => dispatch(showNextWeek())}
-          >
-          {">"}
-          </button> : <button
-            className="back-forward-button"
-            onClick={() => dispatch(showNextDay())}
-          >
-          {">"}
-          </button>}
-            <button value="날짜">날짜선택</button>
+          {calendarType === WEEKLY ? (
+            <button
+              className="back-forward-button"
+              onClick={() => dispatch(showLastWeek())}
+            >
+            {"<"}
+            </button>
+          ) : (
+            <button
+              className="back-forward-button"
+              onClick={() => dispatch(showLastDay())}
+            >
+            {"<"}
+            </button>
+          )}
+          {calendarType === WEEKLY ? (
+            <button
+              className="back-forward-button"
+              onClick={() => dispatch(showNextWeek())}
+            >
+            {">"}
+            </button>
+          ) : (
+            <button
+              className="back-forward-button"
+              onClick={() => dispatch(showNextDay())}
+            >
+            {">"}
+            </button>
+          )}
         </div>
         <div className="selector">
           <select onChange={onChangeCalendarTypeSelector}>
