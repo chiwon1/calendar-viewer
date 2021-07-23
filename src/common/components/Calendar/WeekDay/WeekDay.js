@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Time from "../Time/Time";
+import Time from "../WeeklyScheduleUnit/WeeklyScheduleUnit";
 
 const Wrapper = styled.div`
   .day {
@@ -13,8 +13,7 @@ function Day({ day }) {
   return (
     <Wrapper>
       <div className="day">
-        {day.map((time, timeIndex) => <Time key={timeIndex} />)
-        }
+        {day.map((time, timeIndex) => <Time key={timeIndex} />)}
       </div>
     </Wrapper>
   );

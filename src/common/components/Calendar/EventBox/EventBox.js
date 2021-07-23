@@ -8,7 +8,7 @@ const Wrapper = styled.div`
 
   .title {
     font-size: 20px;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
   }
 
   .description {

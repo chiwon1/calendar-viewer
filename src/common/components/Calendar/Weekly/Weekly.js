@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import Day from "../Day/Day";
-import EventBox from "../EventBox/EventBox";
+import React from "react";
 import { useSelector } from "react-redux";
+import styled from "styled-components";
+import Day from "../WeekDay/WeekDay";
+import EventBox from "../EventBox/EventBox";
 import weeklyCalendarIndex, { changeDateFormat, checkWeeklyEventToShow, dayList } from "../../../utils/dateUtils";
 
 const Wrapper = styled.div`
@@ -12,24 +12,32 @@ const Wrapper = styled.div`
 
   .dayName {
     width: 150px;
-    height: 41px;
+    height: 25px;
     text-align: center;
     display: inline-block;
-    font-size: 22px;
-    line-height: 41px;
+    line-height: 25px;
+    color: white;
+    background-color: black;
   }
 
   .time {
     text-align: center;
     width: 150px;
-    height: 80px;
-    border: 1px solid black;
+    height: 70px;
+    border: 1px solid gray;
   }
 
-  .rowTitle {
+  .row-title-container {
+    background-color: black;
+    width: 1052px;
+  }
+
+  .row-title {
+    position: relative;
+    top: -22px;
     text-align: center;
     width: 150px;
-    height: 82px;
+    height: 72px;
     line-height: 80px;
   }
 
@@ -40,7 +48,19 @@ const Wrapper = styled.div`
 
   .calendar-table {
     display: flex;
+    position: relative;
   }
+`;
+
+const ScheduleWrapper = styled.div`
+  background-color: lightgrey;
+  left: ${props => props.left};
+  top: ${props => props.top};
+  width: 148px;
+  height: 1200px;
+  height: ${props => props.height};
+  z-index: 3;
+  position: absolute;
 `;
 
 function Weekly() {
@@ -63,18 +83,18 @@ function Weekly() {
       <div className="calendar-container">
         <div className="week">
           <div>
-            <div className="rowTitle" />
+            <div className="row-title" />
             {Array.from(Array(24).keys()).map((hour, index) => (
               <div
                 key={index}
-                className="rowTitle">
+                className="row-title">
                   {`${hour}:00 - ${hour + 1}:00`}
               </div>
             ))}
           </div>
           <div>
             <div>
-              <div>
+              <div className="row-title-container">
                 {dayList.map((day, index) => (
                   <div
                     key={index}
@@ -83,7 +103,7 @@ function Weekly() {
                   </div>
                 ))}
               </div>
-              <div>
+              <div className="row-title-container">
                 {weekDateList.map((baseDate, index) => {
                   const { date } = changeDateFormat(baseDate);
                   return (
@@ -104,29 +124,22 @@ function Weekly() {
                 >
                 </Day>
               ))}
+              {filteredData.map(({ id, date, startTime, endTime, title, description }) => {
+                return (
+                  <ScheduleWrapper
+                    key={id}
+                    left={`${150 * (date.getDay()) + 2}px`}
+                    top={`${72 * (startTime)}px`}
+                    height={`${(endTime - startTime) * 72}px`}
+                  >
+                  <EventBox
+                    title={title}
+                    description={description}
+                  />
+                  </ScheduleWrapper>
+                )
+              })}
             </div>
-            {filteredData.map(({ id, date, startTime, endTime, title, description }) => {
-              return (
-                <div
-                  key={id}
-                  style={{
-                    backgroundColor: "pink",
-                    left: (150 * (date.getDay() + 1)),
-                    top: 82 * (startTime + 1),
-                    border: "1px solid black",
-                    width: 150,
-                    height: (endTime - startTime) * 82,
-                    zIndex: 3,
-                    position: "absolute",
-                  }}
-                >
-                <EventBox
-                  title={title}
-                  description={description}
-                />
-                </div>
-              )
-            })}
           </div>
         </div>
       </div>

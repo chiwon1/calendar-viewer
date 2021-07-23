@@ -1,6 +1,6 @@
 import { SHOW_LAST_WEEK, SHOW_NEXT_WEEK, SHOW_DAILY_CALENDAR, SHOW_WEEKLY_CALENDAR, SHOW_LAST_DAY, SHOW_NEXT_DAY, CREATE_EVENT, UPDATE_EVENT, DELETE_EVENT } from "./types";
 import { cloneDeep } from "lodash";
-import { DAILY, WEEKLY } from '../constant';
+import { DAILY, WEEKLY } from "../constant";
 
 const today = new Date();
 

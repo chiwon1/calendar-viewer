@@ -12,17 +12,20 @@ const Wrapper = styled.div`
     text-align: center;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid black;
   }
 
   .menu-selector {
     vertical-align: middle;
   }
 
+  button {
+    /* border: none; */
+    padding: 5px 10px;
+  }
+
   .today-button {
     background-color: white;
     color: black;
-    border: 2px solid #555555;
   }
 
   .month {
@@ -32,7 +35,11 @@ const Wrapper = styled.div`
   .back-forward-button {
     background-color: white;
     color: black;
-    border: 2px solid #555555;
+    margin: 5px;
+  }
+
+  li {
+    list-style: none;
   }
 `;
 
@@ -56,8 +63,8 @@ function Header () {
         <div className="menu-selector">
           <nav>
             <ul>
-              <li><Link to='/'>{CALENDAR}</Link></li>
-              <li><Link to='/event'>{EVENT_CREATE}</Link></li>
+              <li><Link to="/">{CALENDAR}</Link></li>
+              <li><Link to="/event">{EVENT_CREATE}</Link></li>
             </ul>
           </nav>
         </div>

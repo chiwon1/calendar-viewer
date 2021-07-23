@@ -1,8 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { checkDailyEventToShow, dayList } from "../../../utils/dateUtils";
 import EventBox from "../EventBox/EventBox";
+import { TIME } from "../../../../features/constant";
+import { checkDailyEventToShow, dayList } from "../../../utils/dateUtils";
 
 const Wrapper = styled.div`
   .calendar-container {
@@ -26,6 +27,7 @@ const Wrapper = styled.div`
     width: 300px;
     height: 60px;
     border: 1px solid black;
+    margin: 0 0 0 30px;
   }
 
   .second-column {
@@ -38,6 +40,21 @@ const Wrapper = styled.div`
   .day {
     position: relative;
   }
+
+  .calendar-title {
+    background-color: black;
+    color: white;
+  }
+`;
+
+const ScheduleWrapper = styled.div`
+  background-color: lightgrey;
+  left: 325px;
+  top: ${props => props.top};
+  width: 876px;
+  height: ${props => props.height};
+  z-index: 3;
+  position: absolute;
 `;
 
 function Daily() {
@@ -53,8 +70,8 @@ function Daily() {
     <Wrapper>
       <div className="calendar-container">
         <div className="top-row-container">
-          <div className="first-column">Time</div>
-          <div className="second-column">{day} {date}</div>
+          <div className="first-column calendar-title">{TIME}</div>
+          <div className="second-column calendar-title">{day} {date}</div>
         </div>
         <div className="day">
           {Array.from(Array(24).keys()).map((hour, index) => (
@@ -65,24 +82,16 @@ function Daily() {
           ))}
           {filteredData.map(({ id,startTime, endTime, title, description }) => {
             return (
-              <div
+              <ScheduleWrapper
                 key={id}
-                style={{
-                  backgroundColor: "pink",
-                  left: 302,
-                  top: 62 * startTime ,
-                  border: "1px solid black",
-                  width: 898,
-                  height: (endTime - startTime) * 62,
-                  zIndex: 3,
-                  position: "absolute",
-                }}
+                top={`${62 * startTime}px`}
+                height={`${(endTime - startTime) * 62}px`}
               >
               <EventBox
                 title={title}
                 description={description}
               />
-              </div>
+              </ScheduleWrapper>
             )
           })}
         </div>

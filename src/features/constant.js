@@ -17,3 +17,5 @@ export const CALENDAR = "Calendar";
 export const EVENT_CREATE = "Event create";
 
 export const TODAY = "Today";
+
+export const SUBMIT = "Submit";

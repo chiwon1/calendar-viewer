@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { createEvent } from "../../../../features/calendar/actions";
-import { DESCRIPTION, END_TIME, START_TIME, TIME, TITLE } from '../../../../features/constant';
+import { DESCRIPTION, END_TIME, START_TIME, SUBMIT, TIME, TITLE } from "../../../../features/constant";
 
 const Wrapper = styled.div`
   div {
@@ -82,7 +82,7 @@ function EventCreate() {
             )}
           />
         </label>
-        <button onClick={onClickCreateEvent}>Submit</button>
+        <button onClick={onClickCreateEvent}>{SUBMIT}</button>
       </div>
     </Wrapper>
   );

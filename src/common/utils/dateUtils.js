@@ -22,7 +22,7 @@ export function checkWeeklyEventToShow(date, currentWeekDateList, currentSunday)
   return isCurrentWeek && isCurrentMonth;
 };
 
-export const dayList = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+export const dayList = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
 const weeklyCalendarIndex = [];
 
