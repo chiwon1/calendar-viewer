@@ -1,10 +1,12 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 
+import { useSelector } from "react-redux";
+
 import Header from "../common/components/Header/Header";
 import Daily from "../common/components/Calendar/Daily/Daily";
 import Weekly from "../common/components/Calendar/Weekly/Weekly";
-import { useSelector } from "react-redux";
+
 import { WEEKLY } from "../features/constant";
 import EventCreate from "../common/components/Event/EventCreate/EventCreate";
 
