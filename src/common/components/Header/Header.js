@@ -1,9 +1,9 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { showLastWeek, showNextWeek, showDailyCalendar, showWeeklyCalendar, showLastDay, showNextDay } from '../../../features/calendar/actions';
-import { DAILY, WEEKLY } from '../../../features/constant';
+import { showLastWeek, showNextWeek, showDailyCalendar, showWeeklyCalendar, showLastDay, showNextDay } from "../../../features/calendar/actions";
+import { CALENDAR, DAILY, EVENT_CREATE, TODAY, WEEKLY } from "../../../features/constant";
 
 const Wrapper = styled.div`
   header {
@@ -39,7 +39,7 @@ const Wrapper = styled.div`
 function Header () {
   const { currentDate, currentSunday, calendarType } = useSelector((state) => state.calendar);
 
-  const currentMonth = calendarType === WEEKLY ? currentSunday.getMonth() + 1 : currentDate.getMonth() + 1;
+  const currentMonth = calendarType === WEEKLY ? new Date(currentSunday).getMonth() + 1 : new Date(currentDate).getMonth() + 1;
   const dispatch = useDispatch();
 
   const onChangeCalendarTypeSelector = (event) => {
@@ -56,12 +56,12 @@ function Header () {
         <div className="menu-selector">
           <nav>
             <ul>
-              <li><Link to='/'>Calendar</Link></li>
-              <li><Link to='/event'>Create event</Link></li>
+              <li><Link to='/'>{CALENDAR}</Link></li>
+              <li><Link to='/event'>{EVENT_CREATE}</Link></li>
             </ul>
           </nav>
         </div>
-        <button className="today-button">Today</button>
+        <button className="today-button">{TODAY}</button>
         <div className="month">{currentMonth}</div>
         <div className="back-forward">
           {calendarType === WEEKLY ? (

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { useSelector } from 'react-redux';
+import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { checkDailyEventToShow, dayList } from "../../../utils/dateUtils";
 import EventBox from "../EventBox/EventBox";
 
 const Wrapper = styled.div`
@@ -39,32 +40,14 @@ const Wrapper = styled.div`
   }
 `;
 
-const showEventSetting = (timeIndex) => {
-  console.log('showEventSetting!');
-  console.log('timeIndex', timeIndex);
-};
-
 function Daily() {
-  console.log('Start');
-
   const { currentDate, events } = useSelector((state) => state.calendar);
-  console.log('events', events);
 
-  const checkEventToShow = (date, currentDate) => {
-    console.log('date', date);
-    const isCurrentDay = date.getDate() === currentDate.getDate();
-    const isCurrentMonth = currentDate.getMonth() === date.getMonth();
+  const date = new Date(currentDate).getDate();
 
-    return isCurrentDay && isCurrentMonth;
-  };
+  const day = dayList[new Date(currentDate).getDay()];
 
-  const date = currentDate.getDate();
-
-  const dayList = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const day = dayList[currentDate.getDay()];
-
-  const filteredData = events.filter(event => checkEventToShow(event.date, currentDate));
-  console.log('filteredData', filteredData);
+  const filteredData = events.filter(event => checkDailyEventToShow(event.date, currentDate));
 
   return (
     <Wrapper>
@@ -77,11 +60,7 @@ function Daily() {
           {Array.from(Array(24).keys()).map((hour, index) => (
             <div className="row-container" key={index}>
               <div className="first-column">{`${hour}:00 - ${hour + 1}:00`}</div>
-              <div
-                className="second-column"
-                onClick={() => showEventSetting(hour)}
-              >
-              </div>
+              <div className="second-column" />
             </div>
           ))}
           {filteredData.map(({ id,startTime, endTime, title, description }) => {
@@ -94,7 +73,7 @@ function Daily() {
                   top: 62 * startTime ,
                   border: "1px solid black",
                   width: 898,
-                  height: (endTime - startTime) * 61 + 1,
+                  height: (endTime - startTime) * 62,
                   zIndex: 3,
                   position: "absolute",
                 }}

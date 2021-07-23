@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Day from "../Day/Day";
 import EventBox from "../EventBox/EventBox";
-import { useSelector } from 'react-redux';
-import changeDateFormat from '../../../utils/date';
+import { useSelector } from "react-redux";
+import weeklyCalendarIndex, { changeDateFormat, checkWeeklyEventToShow, dayList } from "../../../utils/dateUtils";
 
 const Wrapper = styled.div`
   .calendar-container {
@@ -37,25 +37,14 @@ const Wrapper = styled.div`
     display: flex;
     position: relative;
   }
-`;
 
-const week = [];
-
-for (let i = 0; i < 7; i++) {
-  const day = [];
-
-  for (let j = 0; j < 24; j++) {
-    day.push({i, j});
+  .calendar-table {
+    display: flex;
   }
-
-  week.push(day);
-}
-
-const dayList = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+`;
 
 function Weekly() {
   const { currentSunday, events } = useSelector((state) => state.calendar);
-  console.log('events', events);
 
   const weekDateList = [];
 
@@ -67,54 +56,56 @@ function Weekly() {
     weekDateList.push(date);
   }
 
-  const checkEventToShow = (date, currentWeekDateList) => {
-    const isCurrentWeek = currentWeekDateList.map(baseDate => changeDateFormat(baseDate).date).includes(date.getDate());
-    const isCurrentMonth = currentSunday.getMonth() === date.getMonth();
-
-    return isCurrentWeek && isCurrentMonth;
-  };
-
-  const filteredData = events.filter(event => checkEventToShow(event.date, weekDateList));
-  console.log('filteredData', filteredData);
+  const filteredData = events.filter(event => checkWeeklyEventToShow(event.date, weekDateList, currentSunday));
 
   return (
     <Wrapper>
       <div className="calendar-container">
         <div className="week">
           <div>
-            <div className="rowTitle"></div>
+            <div className="rowTitle" />
             {Array.from(Array(24).keys()).map((hour, index) => (
-              <div key={index} className="rowTitle">{`${hour}:00 - ${hour + 1}:00`}</div>
+              <div
+                key={index}
+                className="rowTitle">
+                  {`${hour}:00 - ${hour + 1}:00`}
+              </div>
             ))}
           </div>
-          <div >
+          <div>
             <div>
               <div>
                 {dayList.map((day, index) => (
-                  <div key={index} className="dayName">{day}</div>
-                  )
-                )}
+                  <div
+                    key={index}
+                    className="dayName">
+                      {day}
+                  </div>
+                ))}
               </div>
               <div>
                 {weekDateList.map((baseDate, index) => {
                   const { date } = changeDateFormat(baseDate);
-
                   return (
-                    <div key={index} className="dayName">{date}</div>
-                )})}
+                    <div
+                      key={index}
+                      className="dayName">
+                        {date}
+                    </div>
+                  )
+                })}
               </div>
             </div>
-            <div style={{ display: 'flex' }}>
-              {week.map((day, dayIndex) => (
+            <div className="calendar-table">
+              {weeklyCalendarIndex.map((day, dayIndex) => (
                 <Day
                   key={dayIndex}
                   day={day}
-                  dayIndex={dayIndex}
                 >
                 </Day>
               ))}
             </div>
-            {filteredData.map(({ id, date, day, startTime, endTime, title, description }) => {
+            {filteredData.map(({ id, date, startTime, endTime, title, description }) => {
               return (
                 <div
                   key={id}
@@ -126,7 +117,7 @@ function Weekly() {
                     width: 150,
                     height: (endTime - startTime) * 82,
                     zIndex: 3,
-                    position: 'absolute',
+                    position: "absolute",
                   }}
                 >
                 <EventBox

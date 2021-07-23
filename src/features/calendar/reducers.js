@@ -2,19 +2,17 @@ import { SHOW_LAST_WEEK, SHOW_NEXT_WEEK, SHOW_DAILY_CALENDAR, SHOW_WEEKLY_CALEND
 import { cloneDeep } from "lodash";
 import { DAILY, WEEKLY } from '../constant';
 
-//toISOString()으로 바꾸기
 const today = new Date();
 
 const thisSunday = new Date();
 thisSunday.setDate(thisSunday.getDate() - today.getDay());
 
 const initialState = {
-  today: today,
+  today: today.toISOString(),
   currentDate: today,
-  currentSunday: thisSunday,
+  currentSunday: thisSunday.toISOString(),
   calendarType: WEEKLY,
   events: [],
-  // displayedMonth: today.getMonth(),
 };
 
 export default function calendarReducer(state = initialState, action) {
@@ -24,7 +22,7 @@ export default function calendarReducer(state = initialState, action) {
 
       const nextSunday = new Date(newState.currentSunday);
       nextSunday.setDate(nextSunday.getDate() - 7);
-      newState.currentSunday = nextSunday;
+      newState.currentSunday = nextSunday.toISOString();
 
       return newState;
     }
@@ -34,7 +32,7 @@ export default function calendarReducer(state = initialState, action) {
       const nextSunday = new Date(newState.currentSunday);
 
       nextSunday.setDate(nextSunday.getDate() + 7);
-      newState.currentSunday = nextSunday;
+      newState.currentSunday = nextSunday.toISOString();
 
       return newState;
     }
@@ -43,7 +41,7 @@ export default function calendarReducer(state = initialState, action) {
 
       const lastDay = new Date(newState.currentDate);
       lastDay.setDate(lastDay.getDate() - 1);
-      newState.currentDate = lastDay;
+      newState.currentDate = lastDay.toISOString();
 
       return newState;
     }
@@ -52,7 +50,7 @@ export default function calendarReducer(state = initialState, action) {
 
       const nextDay = new Date(newState.currentDate);
       nextDay.setDate(nextDay.getDate() + 1);
-      newState.currentDate = nextDay;
+      newState.currentDate = nextDay.toISOString();
 
       return newState;
     }

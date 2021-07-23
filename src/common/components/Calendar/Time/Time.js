@@ -14,8 +14,7 @@ function Time({ onClick }) {
       <div
         className="time"
         onClick={onClick}
-      >
-      </div>
+      />
     </Wrapper>
   );
 }

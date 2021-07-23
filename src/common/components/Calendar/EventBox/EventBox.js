@@ -8,6 +8,11 @@ const Wrapper = styled.div`
 
   .title {
     font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .description {
+    font-size: 14px;
   }
 `;
 
@@ -17,7 +22,7 @@ function Event({ title, description }) {
       <div className="title">
         {title}
       </div>
-      <div>
+      <div className="description">
         {description}
       </div>
     </Wrapper>

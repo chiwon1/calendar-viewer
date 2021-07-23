@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { createEvent } from "../../../../features/calendar/actions";
+import { DESCRIPTION, END_TIME, START_TIME, TIME, TITLE } from '../../../../features/constant';
 
 const Wrapper = styled.div`
   div {
@@ -26,61 +27,58 @@ function EventCreate() {
     <Wrapper>
       <div>
         <label>
-          Title :
+          {TITLE} :
           <input
             onChange={(event) => (
-              setInputEventInfo(
-                {...inputEventInfo,
-                  title: event.target.value
-                }
-              )
+              setInputEventInfo({
+                ...inputEventInfo,
+                title: event.target.value
+              })
             )}
           />
         </label>
         <label>
-          Description :
+          {DESCRIPTION} :
           <input
             onChange={(event) => (
-              setInputEventInfo(
-                {...inputEventInfo,
-                  description: event.target.value
-                }
-              )
+              setInputEventInfo({
+                ...inputEventInfo,
+                description: event.target.value
+              })
             )}
           />
         </label>
         <label>
-          Time :
-          <input type="date"
+          {TIME} :
+          <input
+            type="date"
             onChange={(event) => (
-              setInputEventInfo(
-                {...inputEventInfo,
-                  date: new Date(event.target.value)
-                }
-              )
+              setInputEventInfo({
+                ...inputEventInfo,
+                date: new Date(event.target.value)
+              })
             )}
           />
         </label>
         <label>
-          StartTime :
-          <input onChange={(event) => (
-              setInputEventInfo(
-                {...inputEventInfo,
-                  startTime: Number(event.target.value)
-                }
-              )
-            )}
-          />
-        </label>
-        <label>
-          EndTime :
+          {START_TIME} :
           <input
             onChange={(event) => (
-              setInputEventInfo(
-                {...inputEventInfo,
-                  endTime: Number(event.target.value)
-                }
-              )
+              setInputEventInfo({
+                ...inputEventInfo,
+                startTime: Number(event.target.value)
+              })
+            )}
+          />
+        </label>
+        <label>
+          {END_TIME} :
+          <input
+            onChange={(event) => (
+              setInputEventInfo({
+                ...inputEventInfo,
+                endTime: Number(event.target.value)
+              })
             )}
           />
         </label>
