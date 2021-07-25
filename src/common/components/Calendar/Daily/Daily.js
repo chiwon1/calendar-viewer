@@ -38,8 +38,7 @@ function Daily() {
             description={description}
           />
           </EventBoxWrapper>
-        )
-        )}
+        ))}
       </TimeIndexAndEventBoxesWrapper>
     </Wrapper>
   );

@@ -21,7 +21,6 @@
     { "id": 10, "date": "2021-06-25T00:00:00.000Z"
       , "startTime": 2, "endTime": 4, "title": "Todo 10", "description": "description10" },
     { "id": 11, "date": "2021-08-25T00:00:00.000Z"
-      , "startTime": 5, "endTime": 7, "title": "Todo 11", "description": "description12"
-    }
+      , "startTime": 5, "endTime": 7, "title": "Todo 11", "description": "description11" }
   ]
 }
