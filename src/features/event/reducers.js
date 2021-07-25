@@ -1,4 +1,4 @@
-import { CREATE_EVENT, UPDATE_EVENT, DELETE_EVENT } from './types';
+import { CREATE_EVENT, MODIFY_EVENT, DELETE_EVENT } from "./types";
 import { cloneDeep } from "lodash";
 
 const initialState = {
@@ -14,7 +14,7 @@ export default function eventReducer(state = initialState, action) {
 
       return newState;
     }
-    case UPDATE_EVENT: {
+    case MODIFY_EVENT: {
       const newEvent = { id: action.id, ...action.payload };
 
       newState[action.id] = newEvent;

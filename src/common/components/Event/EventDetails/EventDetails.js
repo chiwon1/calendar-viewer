@@ -1,10 +1,13 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
 import { DESCRIPTION, END_TIME, START_TIME, DATE, TITLE, INVALID_ID_MESSAGE, DELETE_EVENT_BUTTON_MESSAGE } from "../../../../features/constant";
+import { deleteEvent } from "../../../../features/event/actions";
 import { changeDateFormat } from "../../../utils/dateUtils";
 
 function EventDetails() {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const { events } = useSelector((state) => state.event);
   const { eventId } = useParams();
 
@@ -16,6 +19,11 @@ function EventDetails() {
 
   const eventDate = changeDateFormat(new Date(date));
 
+  const onClickDeleteEvent = () => {
+    dispatch(deleteEvent(eventId));
+    history.push("/calendar");
+  };
+
   return (
     <div>
       <div>{TITLE}: {title}</div>
@@ -23,6 +31,7 @@ function EventDetails() {
       <div>{DATE}: {`${eventDate.year}.${eventDate.month}.${eventDate.date} (${eventDate.day})`}</div>
       <div>{START_TIME}: {startTime}</div>
       <div>{END_TIME}: {endTime}</div>
+      <button onClick={onClickDeleteEvent}>{DELETE_EVENT_BUTTON_MESSAGE}</button>
     </div>
   );
 }

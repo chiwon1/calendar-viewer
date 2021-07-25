@@ -1,5 +1,5 @@
-export const CREATE_EVENT = "calendar/CREATE_EVENT";
+export const CREATE_EVENT = "event/CREATE_EVENT";
 
-export const UPDATE_EVENT = "calendar/UPDATE_EVENT";
+export const MODIFY_EVENT = "event/MODIFY_EVENT";
 
-export const DELETE_EVENT = "calendar/DELETE_EVENT";
+export const DELETE_EVENT = "event/DELETE_EVENT";
