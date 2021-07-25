@@ -6,7 +6,10 @@ import EventBox from "../EventBox/EventBox";
 import weeklyCalendarIndex, { changeDateFormat, checkWeeklyEventToShow, dayList } from "../../../utils/dateUtils";
 
 function Weekly() {
-  const { currentSunday, events } = useSelector((state) => state.calendar);
+  const { calendar, event } = useSelector((state) => state);
+
+  const { currentSunday } = calendar;
+  const { events } = event;
 
   const weekDateList = [];
 

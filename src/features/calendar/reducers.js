@@ -58,26 +58,26 @@ export default function calendarReducer(state = initialState, action) {
 
       return newState;
     }
-    case CREATE_EVENT: {
-      newState.events = [...newState.events, { ... action.payload, id: newState.events.length + 1 }];
+    // case CREATE_EVENT: {
+    //   newState.events = [...newState.events, { ... action.payload, id: newState.events.length + 1 }];
 
-      return newState;
-    }
-    case UPDATE_EVENT: {
-      const newEvent = { id: action.id, ...action.payload };
+    //   return newState;
+    // }
+    // case UPDATE_EVENT: {
+    //   const newEvent = { id: action.id, ...action.payload };
 
-      newState[action.id] = newEvent;
+    //   newState[action.id] = newEvent;
 
-      return newState;
-    }
-    case DELETE_EVENT: {
-      const newEvents = [...newState.events.slice(0, action.id), ...newState.events.slice(action.id + 1)];
+    //   return newState;
+    // }
+    // case DELETE_EVENT: {
+    //   const newEvents = [...newState.events.slice(0, action.id), ...newState.events.slice(action.id + 1)];
 
-      newState.events = newEvents;
+    //   newState.events = newEvents;
 
-      return newState;
-    }
+    //   return newState;
+    // }
     default:
-      return cloneDeep(state);
+      return newState;
   }
 }

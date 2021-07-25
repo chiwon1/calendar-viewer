@@ -6,7 +6,10 @@ import { TIME } from "../../../../features/constant";
 import { checkDailyEventToShow, dayList } from "../../../utils/dateUtils";
 
 function Daily() {
-  const { currentDate, events } = useSelector((state) => state.calendar);
+  const { calendar, event } = useSelector((state) => state);
+
+  const { currentDate } = calendar;
+  const { events } = event;
 
   const date = new Date(currentDate).getDate();
 
