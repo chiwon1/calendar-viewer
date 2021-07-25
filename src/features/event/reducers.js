@@ -17,7 +17,7 @@ export default function eventReducer(state = initialState, action) {
     case MODIFY_EVENT: {
       const newEvent = { id: action.id, ...action.payload };
 
-      newState[action.id] = newEvent;
+      newState.events[action.id] = newEvent;
 
       return newState;
     }

@@ -1,19 +1,23 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { DATE, DESCRIPTION, END_TIME, START_TIME, SUBMIT, TITLE } from "../../../../features/constant";
+import { modifyEvent } from "../../../../features/event/actions";
 
-import { DESCRIPTION, END_TIME, START_TIME, SUBMIT, DATE, TITLE } from "../../../../features/constant";
-import { createEvent } from "../../../../features/event/actions";
-
-function EventCreate() {
+function EventModifyForm({ id }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [inputEventInfo, setInputEventInfo] = useState({});
+  const { events } = useSelector((state) => state.event);
+  const { title, description, date, startTime, endTime } = events[id];
 
-  const onClickCreateEvent = () => {
-    dispatch(createEvent(inputEventInfo));
+  const [inputEventInfo, setInputEventInfo] = useState({
+    title, description, date, startTime, endTime
+  });
+
+  const onClickModifyEvent = () => {
+    dispatch(modifyEvent(id, inputEventInfo));
     history.push("/calendar");
   };
 
@@ -22,6 +26,7 @@ function EventCreate() {
       <label>
         {TITLE} :
         <input
+          value={inputEventInfo.title}
           onChange={(event) => (
             setInputEventInfo({
               ...inputEventInfo,
@@ -33,6 +38,7 @@ function EventCreate() {
       <label>
         {DESCRIPTION} :
         <input
+          value={inputEventInfo.description}
           onChange={(event) => (
             setInputEventInfo(prev => ({
               ...prev,
@@ -44,6 +50,7 @@ function EventCreate() {
       <label>
         {DATE} :
         <input
+          value={inputEventInfo.date}
           type="date"
           onChange={(event) => (
             setInputEventInfo(prev => ({
@@ -56,6 +63,7 @@ function EventCreate() {
       <label>
         {START_TIME} :
         <input
+          value={inputEventInfo.startTime}
           onChange={(event) => (
             setInputEventInfo(prev => ({
               ...prev,
@@ -67,6 +75,7 @@ function EventCreate() {
       <label>
         {END_TIME} :
         <input
+          value={inputEventInfo.endTime}
           onChange={(event) => (
             setInputEventInfo(prev => ({
               ...prev,
@@ -75,7 +84,7 @@ function EventCreate() {
           )}
         />
       </label>
-      <button onClick={onClickCreateEvent}>{SUBMIT}</button>
+      <button onClick={onClickModifyEvent}>{SUBMIT}</button>
     </Wrapper>
   );
 }
@@ -88,4 +97,4 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-export default EventCreate;
+export default EventModifyForm;

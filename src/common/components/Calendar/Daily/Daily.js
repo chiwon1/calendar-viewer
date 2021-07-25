@@ -6,16 +6,16 @@ import { DATE } from "../../../../features/constant";
 import { checkDailyEventToShow, dayList } from "../../../utils/dateUtils";
 
 function Daily() {
-  const { calendar, event } = useSelector((state) => state);
-
-  const { currentDate } = calendar;
-  const { events } = event;
+  const { currentDate, events } = useSelector((state) => ({
+    currentDate: state.calendar.currentDate,
+    events: state.event.events
+  }));
 
   const date = new Date(currentDate).getDate();
 
   const day = dayList[new Date(currentDate).getDay()];
 
-  const filteredData = events.filter(event => checkDailyEventToShow(event.date, currentDate));
+  const currentDateEvents = events.filter(event => checkDailyEventToShow(event.date, currentDate));
 
   return (
     <Wrapper>
@@ -30,7 +30,7 @@ function Daily() {
             <SecondColumn />
           </RowContainer>
         ))}
-        {filteredData.map(({ id,startTime, endTime, title, description }) => (
+        {currentDateEvents.map(({ id,startTime, endTime, title, description }) => (
           <EventBox
             eventId={id}
             title={title}

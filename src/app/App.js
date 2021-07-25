@@ -15,7 +15,7 @@ function App() {
   const { calendarType } = useSelector((state) => state.calendar);
 
   return (
-    <div >
+    <div>
       <Header />
       <Switch>
         <Route exact path="/">

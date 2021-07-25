@@ -6,10 +6,10 @@ import EventBox from "../EventBox/EventBox";
 import weeklyCalendarIndex, { changeDateFormat, checkWeeklyEventToShow, dayList } from "../../../utils/dateUtils";
 
 function Weekly() {
-  const { calendar, event } = useSelector((state) => state);
-
-  const { currentSunday } = calendar;
-  const { events } = event;
+  const { currentSunday, events } = useSelector((state) => ({
+    currentSunday: state.calendar.currentSunday,
+    events: state.event.events
+  }));
 
   const weekDateList = [];
 
@@ -21,7 +21,7 @@ function Weekly() {
     weekDateList.push(date);
   }
 
-  const filteredData = events.filter(event => checkWeeklyEventToShow(event.date, weekDateList, currentSunday));
+  const currentWeekEvents = events.filter(event => checkWeeklyEventToShow(event.date, weekDateList, currentSunday));
 
   return (
     <Wrapper>
@@ -49,7 +49,7 @@ function Weekly() {
         </FirstRowWrapper>
         <EventBoxesWrapper>
           {weeklyCalendarIndex.map((day, dayIndex) => <Day key={dayIndex} day={day} />)}
-          {filteredData.map(({ id, date, startTime, endTime, title, description }) => {
+          {currentWeekEvents.map(({ id, date, startTime, endTime, title, description }) => {
             return (
               <EventBox
                 eventId={id}
