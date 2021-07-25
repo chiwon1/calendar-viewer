@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from 'react-router-dom';
 import styled from "styled-components";
 import { createEvent } from "../../../../features/calendar/actions";
 import { DESCRIPTION, END_TIME, START_TIME, SUBMIT, TIME, TITLE } from "../../../../features/constant";
 
 function EventCreate() {
   const [inputEventInfo, setInputEventInfo] = useState({});
+  const history = useHistory();
 
   const dispatch = useDispatch();
 
   const onClickCreateEvent = () => {
     dispatch(createEvent(inputEventInfo));
+    history.goBack();
   };
 
   return (

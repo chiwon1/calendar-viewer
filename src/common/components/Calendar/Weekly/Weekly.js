@@ -51,17 +51,14 @@ function Weekly() {
           {weeklyCalendarIndex.map((day, dayIndex) => <Day key={dayIndex} day={day} />)}
           {filteredData.map(({ id, date, startTime, endTime, title, description }) => {
             return (
-              <EventBoxWrapper
+              <EventBox
+                title={title}
+                description={description}
                 key={id}
                 left={`${150 * (date.getDay()) + 2}px`}
                 top={`${72 * (startTime)}px`}
                 height={`${(endTime - startTime) * 72}px`}
-              >
-              <EventBox
-                title={title}
-                description={description}
               />
-              </EventBoxWrapper>
             )
           })}
         </EventBoxesWrapper>
@@ -98,17 +95,6 @@ const DateAndDayWrapper = styled.div`
 const EventBoxesWrapper = styled.div`
   display: flex;
   position: relative;
-`;
-
-const EventBoxWrapper = styled.div`
-  background-color: lightgrey;
-  left: ${props => props.left};
-  top: ${props => props.top};
-  width: 149px;
-  height: 1200px;
-  height: ${props => props.height};
-  z-index: 3;
-  position: absolute;
 `;
 
 const FirstRowWrapper = styled.div`

@@ -31,16 +31,14 @@ function Daily() {
           </RowContainer>
         ))}
         {filteredData.map(({ id,startTime, endTime, title, description }) => (
-          <EventBoxWrapper
-            key={id}
-            top={`${62 * startTime}px`}
-            height={`${(endTime - startTime) * 62}px`}
-          >
           <EventBox
             title={title}
             description={description}
+            key={id}
+            left={`${325}px`}
+            top={`${62 * startTime}px`}
+            height={`${(endTime - startTime) * 62}px`}
           />
-          </EventBoxWrapper>
         ))}
       </TimeIndexAndEventBoxesWrapper>
     </Wrapper>
