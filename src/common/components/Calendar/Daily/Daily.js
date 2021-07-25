@@ -2,8 +2,10 @@ import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import EventBox from "../EventBox/EventBox";
-import { DATE } from "../../../../features/constant";
-import { checkDailyEventToShow, dayList } from "../../../utils/dateUtils";
+import { DATE, DAY_LIST } from "../../../../features/constant";
+import { checkDailyEventToShow } from "../../../utils/dateUtils";
+
+const emptyArrayForTimeIndex = [...new Array(24)];
 
 function Daily() {
   const { currentDate, events } = useSelector((state) => ({
@@ -13,7 +15,7 @@ function Daily() {
 
   const date = new Date(currentDate).getDate();
 
-  const day = dayList[new Date(currentDate).getDay()];
+  const day = DAY_LIST[new Date(currentDate).getDay()];
 
   const currentDateEvents = events.filter(event => checkDailyEventToShow(event.date, currentDate));
 
@@ -24,13 +26,13 @@ function Daily() {
         <DayAndDateWrapper>{day} {date}</DayAndDateWrapper>
       </TopRowContainer>
       <TimeIndexAndEventBoxesWrapper>
-        {[...new Array(24)].map((_, hour) => (
+        {emptyArrayForTimeIndex.map((_, hour) => (
           <RowContainer key={hour}>
             <FirstColumnWrapper>{`${hour}:00 - ${hour + 1}:00`}</FirstColumnWrapper>
             <SecondColumn />
           </RowContainer>
         ))}
-        {currentDateEvents.map(({ id,startTime, endTime, title, description }) => (
+        {currentDateEvents.map(({ id, startTime, endTime, title, description }) => (
           <EventBox
             eventId={id}
             title={title}

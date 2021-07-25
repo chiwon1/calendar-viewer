@@ -1,6 +1,7 @@
+import { DAY_LIST } from "../../features/constant";
+
 export function changeDateFormat(target) {
-  const dayList = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-  const day = dayList[target.getDay()];
+  const day = DAY_LIST[target.getDay()];
   const date = target.getDate();
   const month = target.getMonth() + 1;
   const year = target.getFullYear();
@@ -22,8 +23,6 @@ export function checkWeeklyEventToShow(date, currentWeekDateList, currentSunday)
   return isCurrentWeek && isCurrentMonth;
 };
 
-export const dayList = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-
 const weeklyCalendarIndex = [];
 
 for (let i = 0; i < 7; i++) {
@@ -37,3 +36,17 @@ for (let i = 0; i < 7; i++) {
 }
 
 export default weeklyCalendarIndex;
+
+export function getCurrentWeeklyDateList(sunday) {
+  const dateList = [];
+
+  for (let i = 0; i < 7; i++) {
+    const date = new Date(sunday);
+
+    date.setDate(date.getDate() + i);
+
+    dateList.push(date);
+  }
+
+  return dateList;
+};

@@ -25,3 +25,5 @@ export const INVALID_ID_MESSAGE = "Invalid access";
 export const MODIFY_EVENT_BUTTON_MESSAGE = "Modify Event";
 
 export const DELETE_EVENT_BUTTON_MESSAGE = "Delete Event";
+
+export const DAY_LIST = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];

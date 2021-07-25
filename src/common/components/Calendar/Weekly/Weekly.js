@@ -3,7 +3,10 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Day from "../WeekDay/WeekDay";
 import EventBox from "../EventBox/EventBox";
-import weeklyCalendarIndex, { changeDateFormat, checkWeeklyEventToShow, dayList } from "../../../utils/dateUtils";
+import weeklyCalendarIndex, { changeDateFormat, checkWeeklyEventToShow, getCurrentWeeklyDateList } from "../../../utils/dateUtils";
+import { DAY_LIST } from "../../../../features/constant";
+
+const emptyArrayForTimeIndex = [...new Array(24)];
 
 function Weekly() {
   const { currentSunday, events } = useSelector((state) => ({
@@ -11,15 +14,7 @@ function Weekly() {
     events: state.event.events
   }));
 
-  const weekDateList = [];
-
-  for (let i = 0; i < 7; i++) {
-    const date = new Date(currentSunday);
-
-    date.setDate(date.getDate() + i);
-
-    weekDateList.push(date);
-  }
+  const weekDateList = getCurrentWeeklyDateList(currentSunday);
 
   const currentWeekEvents = events.filter(event => checkWeeklyEventToShow(event.date, weekDateList, currentSunday));
 
@@ -27,7 +22,7 @@ function Weekly() {
     <Wrapper>
       <div>
         <TimeIndexWrapper />
-        {[...new Array(24)].map((_, hour) => (
+        {emptyArrayForTimeIndex.map((_, hour) => (
           <TimeIndexWrapper key={hour}>
             {`${hour}:00 - ${hour + 1}:00`}
           </TimeIndexWrapper>
@@ -36,7 +31,7 @@ function Weekly() {
       <div>
         <FirstRowWrapper>
           <div>
-            {dayList.map((day) => <DateAndDayWrapper key={day}>{day}</DateAndDayWrapper>)}
+            {DAY_LIST.map((day) => <DateAndDayWrapper key={day}>{day}</DateAndDayWrapper>)}
           </div>
           <div>
             {weekDateList.map((baseDate) => {

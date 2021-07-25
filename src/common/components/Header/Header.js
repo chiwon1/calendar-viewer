@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { showLastWeek, showNextWeek, showDailyCalendar, showWeeklyCalendar, showLastDay, showNextDay } from "../../../features/calendar/actions";
 import { CALENDAR, DAILY, EVENT_CREATE_BUTTON_MESSAGE, TODAY, WEEKLY } from "../../../features/constant";
 
-function Header () {
+function Header() {
   const { currentDate, currentSunday, calendarType } = useSelector((state) => state.calendar);
 
   const currentMonth = calendarType === WEEKLY ? (new Date(currentSunday).getMonth() + 1) : (new Date(currentDate).getMonth() + 1);
