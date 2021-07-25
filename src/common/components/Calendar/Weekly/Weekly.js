@@ -52,10 +52,11 @@ function Weekly() {
           {filteredData.map(({ id, date, startTime, endTime, title, description }) => {
             return (
               <EventBox
+                eventId={id}
                 title={title}
                 description={description}
                 key={id}
-                left={`${150 * (date.getDay()) + 2}px`}
+                left={`${150 * (new Date(date).getDay()) + 2}px`}
                 top={`${72 * (startTime)}px`}
                 height={`${(endTime - startTime) * 72}px`}
               />

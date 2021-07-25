@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import EventBox from "../EventBox/EventBox";
-import { TIME } from "../../../../features/constant";
+import { DATE } from "../../../../features/constant";
 import { checkDailyEventToShow, dayList } from "../../../utils/dateUtils";
 
 function Daily() {
@@ -20,7 +20,7 @@ function Daily() {
   return (
     <Wrapper>
       <TopRowContainer>
-        <TimeIndexTitleWrapper>{TIME}</TimeIndexTitleWrapper>
+        <TimeIndexTitleWrapper>{DATE}</TimeIndexTitleWrapper>
         <DayAndDateWrapper>{day} {date}</DayAndDateWrapper>
       </TopRowContainer>
       <TimeIndexAndEventBoxesWrapper>
@@ -32,6 +32,7 @@ function Daily() {
         ))}
         {filteredData.map(({ id,startTime, endTime, title, description }) => (
           <EventBox
+            eventId={id}
             title={title}
             description={description}
             key={id}

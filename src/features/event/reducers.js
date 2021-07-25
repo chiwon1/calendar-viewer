@@ -10,7 +10,7 @@ export default function eventReducer(state = initialState, action) {
 
   switch (action.type) {
     case CREATE_EVENT: {
-      newState.events = [...newState.events, { ... action.payload, id: newState.events.length + 1 }];
+      newState.events = [...newState.events, { ... action.payload, id: newState.events.length }];
 
       return newState;
     }

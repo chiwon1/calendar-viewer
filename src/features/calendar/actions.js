@@ -23,15 +23,3 @@ export function showLastDay() {
 export function showNextDay() {
   return { type: SHOW_NEXT_DAY };
 }
-
-export function createEvent(eventInfo) {
-  return { type: CREATE_EVENT, payload: eventInfo };
-}
-
-export function updateEvent() {
-  return { type: UPDATE_EVENT };
-}
-
-export function deleteEvent() {
-  return { type: DELETE_EVENT };
-}

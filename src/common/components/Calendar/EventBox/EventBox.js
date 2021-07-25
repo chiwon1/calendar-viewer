@@ -1,14 +1,22 @@
 import React from "react";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { WEEKLY } from '../../../../features/constant';
+import { WEEKLY } from "../../../../features/constant";
 
-function EventBox({ title, description, left, top, height }) {
+function EventBox({ eventId, title, description, left, top, height }) {
+  const history = useHistory();
+
   const { calendarType } = useSelector((state) => state.calendar);
   const width = calendarType === WEEKLY ? 149 : 876;
 
+  const moveToEventDetails = () => {
+    history.push(`events/${eventId}`);
+  };
+
   return (
     <Wrapper
+      onClick={moveToEventDetails}
       left={left}
       top={top}
       height={height}

@@ -9,6 +9,7 @@ import Weekly from "../common/components/Calendar/Weekly/Weekly";
 
 import { WEEKLY } from "../features/constant";
 import EventCreate from "../common/components/Event/EventCreate/EventCreate";
+import EventDetails from '../common/components/Event/EventDetails/EventDetails';
 
 function App() {
   const { calendarType } = useSelector((state) => state.calendar);
@@ -25,8 +26,11 @@ function App() {
             <Weekly /> : <Daily />
           }
         </Route>
-        <Route path="/event">
+        <Route path="/events/new">
           <EventCreate />
+        </Route>
+        <Route path="/events/:eventId">
+          <EventDetails />
         </Route>
       </Switch>
     </div>

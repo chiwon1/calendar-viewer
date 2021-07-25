@@ -1,4 +1,4 @@
-import { SHOW_LAST_WEEK, SHOW_NEXT_WEEK, SHOW_DAILY_CALENDAR, SHOW_WEEKLY_CALENDAR, SHOW_LAST_DAY, SHOW_NEXT_DAY, CREATE_EVENT, UPDATE_EVENT, DELETE_EVENT } from "./types";
+import { SHOW_LAST_WEEK, SHOW_NEXT_WEEK, SHOW_DAILY_CALENDAR, SHOW_WEEKLY_CALENDAR, SHOW_LAST_DAY, SHOW_NEXT_DAY } from "./types";
 import { cloneDeep } from "lodash";
 import { DAILY, WEEKLY } from "../constant";
 
@@ -58,25 +58,6 @@ export default function calendarReducer(state = initialState, action) {
 
       return newState;
     }
-    // case CREATE_EVENT: {
-    //   newState.events = [...newState.events, { ... action.payload, id: newState.events.length + 1 }];
-
-    //   return newState;
-    // }
-    // case UPDATE_EVENT: {
-    //   const newEvent = { id: action.id, ...action.payload };
-
-    //   newState[action.id] = newEvent;
-
-    //   return newState;
-    // }
-    // case DELETE_EVENT: {
-    //   const newEvents = [...newState.events.slice(0, action.id), ...newState.events.slice(action.id + 1)];
-
-    //   newState.events = newEvents;
-
-    //   return newState;
-    // }
     default:
       return newState;
   }

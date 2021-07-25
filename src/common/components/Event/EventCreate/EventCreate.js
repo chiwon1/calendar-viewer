@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { createEvent } from "../../../../features/calendar/actions";
-import { DESCRIPTION, END_TIME, START_TIME, SUBMIT, TIME, TITLE } from "../../../../features/constant";
+
+import { DESCRIPTION, END_TIME, START_TIME, SUBMIT, DATE, TITLE } from "../../../../features/constant";
+import { createEvent } from "../../../../features/event/actions";
 
 function EventCreate() {
-  const [inputEventInfo, setInputEventInfo] = useState({});
+  const dispatch = useDispatch();
   const history = useHistory();
 
-  const dispatch = useDispatch();
+  const [inputEventInfo, setInputEventInfo] = useState({});
 
   const onClickCreateEvent = () => {
     dispatch(createEvent(inputEventInfo));
-    history.goBack();
+    history.push("/calendar");
   };
 
   return (
@@ -41,13 +42,13 @@ function EventCreate() {
         />
       </label>
       <label>
-        {TIME} :
+        {DATE} :
         <input
           type="date"
           onChange={(event) => (
             setInputEventInfo({
               ...inputEventInfo,
-              date: new Date(event.target.value)
+              date: (new Date(event.target.value)).toISOString(),
             })
           )}
         />

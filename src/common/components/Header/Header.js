@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { showLastWeek, showNextWeek, showDailyCalendar, showWeeklyCalendar, showLastDay, showNextDay } from "../../../features/calendar/actions";
-import { CALENDAR, DAILY, EVENT_CREATE, TODAY, WEEKLY } from "../../../features/constant";
+import { CALENDAR, DAILY, EVENT_CREATE_BUTTON_MESSAGE, TODAY, WEEKLY } from "../../../features/constant";
 
 function Header () {
   const { currentDate, currentSunday, calendarType } = useSelector((state) => state.calendar);
@@ -25,8 +25,8 @@ function Header () {
       <MenuSelectorWrapper>
         <nav>
           <ul>
-            <ListWrapper><Link to="/">{CALENDAR}</Link></ListWrapper>
-            <ListWrapper><Link to="/event">{EVENT_CREATE}</Link></ListWrapper>
+            <ListWrapper><Link to="/calendar">{CALENDAR}</Link></ListWrapper>
+            <ListWrapper><Link to="/events/new">{EVENT_CREATE_BUTTON_MESSAGE}</Link></ListWrapper>
           </ul>
         </nav>
       </MenuSelectorWrapper>
