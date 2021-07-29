@@ -15,11 +15,13 @@ function EventDetails() {
 
   const [isModifyMode, setIsModifyMode] = useState(false);
 
-  if (events[eventId] === undefined) {
+  const eventToShow = events.filter(event => event.id === eventId);
+
+  if (eventToShow.length === 0) {
     return <div>{INVALID_ID_MESSAGE}</div>;
   }
 
-  const { title, description, date, startTime, endTime } = events[eventId];
+  const { title, description, date, startTime, endTime } = eventToShow[0];
 
   const eventDate = changeDateFormat(new Date(date));
 

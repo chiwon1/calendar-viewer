@@ -23,10 +23,10 @@ function EventCreate() {
         {TITLE} :
         <input
           onChange={(event) => (
-            setInputEventInfo({
-              ...inputEventInfo,
+            setInputEventInfo(prev => ({
+              ...prev,
               title: event.target.value
-            })
+            }))
           )}
         />
       </label>

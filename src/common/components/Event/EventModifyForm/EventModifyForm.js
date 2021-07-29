@@ -10,7 +10,10 @@ function EventModifyForm({ id }) {
   const history = useHistory();
 
   const { events } = useSelector((state) => state.event);
-  const { title, description, date, startTime, endTime } = events[id];
+
+  const eventToModify = events.filter(event => event.id === id);
+
+  const { title, description, date, startTime, endTime } = eventToModify[0];
 
   const [inputEventInfo, setInputEventInfo] = useState({
     title, description, date, startTime, endTime

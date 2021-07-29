@@ -1,5 +1,5 @@
 import { CREATE_EVENT, MODIFY_EVENT, DELETE_EVENT } from "./types";
-import { cloneDeep } from "lodash";
+import { cloneDeep, uniqueId } from "lodash";
 
 const initialState = {
   events: [],
@@ -10,19 +10,23 @@ export default function eventReducer(state = initialState, action) {
 
   switch (action.type) {
     case CREATE_EVENT: {
-      newState.events = [...newState.events, { ... action.payload, id: newState.events.length }];
+      newState.events = [...newState.events, { ...action.payload, id: uniqueId() }];
 
       return newState;
     }
     case MODIFY_EVENT: {
-      const newEvent = { id: action.id, ...action.payload };
+      const eventToModify = newState.events.filter(event => event.id === action.id);
 
-      newState.events[action.id] = newEvent;
+      eventToModify[0] = { id: action.id, ...action.payload };
+
+      const restEvents = newState.events.filter(event => event.id !== action.id);
+
+      newState.events = [ ...restEvents, ...eventToModify ];
 
       return newState;
     }
     case DELETE_EVENT: {
-      const newEvents = [...newState.events.slice(0, action.id), ...newState.events.slice(action.id + 1)];
+      const newEvents = newState.events.filter(event => event.id !== action.id);
 
       newState.events = newEvents;
 
